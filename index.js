@@ -8,9 +8,10 @@ const cors = require('cors'); // Added CORS middleware
 const compression = require('compression'); // Added compression middleware
 const mongoose = require('mongoose');
 const userRoutes = require('./src/routes/userRoute');
+const newLeadRoutes = require('./src/routes/newLeadRoute');
 
 const rateLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
+    windowMs: 15 * 60 * 2000, // 15 minutes
     max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes),
     message: 'Too many requests from this IP. Please try again later',
 });
@@ -29,6 +30,7 @@ app.use(express.json());
 mongoose.connect('mongodb+srv://ezazrahul794:rK8pmC56PVg4nUv3@cluster0.lrzl9qy.mongodb.net/', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useUnifiedTopology: true
 })
     .then(() => {
         console.log('Connected to MongoDB');
@@ -39,7 +41,11 @@ mongoose.connect('mongodb+srv://ezazrahul794:rK8pmC56PVg4nUv3@cluster0.lrzl9qy.m
 
 // User routes
 app.use('/', userRoutes);
-// app.use('/', userRoutes);
+// Include routes for new leads
+app.use('/', newLeadRoutes);
+// auth
+app.use('/', userRoutes);
+
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

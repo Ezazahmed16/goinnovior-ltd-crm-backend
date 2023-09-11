@@ -1,4 +1,5 @@
 const userModel = require('../models/userModel');
+// const bcrypt = require('bcrypt');
 
 // Create a new user
 exports.createUser = (req, res) => {
@@ -51,5 +52,33 @@ exports.deleteUserById = async (req, res) => {
   } catch (error) {
     console.error('Error deleting user:', error);
     res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+// authentication controller
+// User login
+exports.login = async (req, res) => {
+  try {
+    const { name, password } = req.body;
+
+    // Find the user by name
+    const user = await userModel.findOne({ name });
+
+    // Check if the user exists
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    // Check if the provided password matches the stored password
+    if (user.password !== password) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    // Send a success response
+    res.status(200).json({ message: 'Login successful' });
+  } catch (error) {
+    console.error('Error during login:', error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };

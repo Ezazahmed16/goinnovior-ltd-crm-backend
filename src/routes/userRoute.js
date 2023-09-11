@@ -11,4 +11,7 @@ router.get('/users', userController.getAllUsers);
 // Delete user by id (DELETE request with parameter :id)
 router.delete('/users/:id', userController.deleteUserById);
 
+// Authentication route (POST request)
+router.post('/user/login', userController.login);
+
 module.exports = router;
