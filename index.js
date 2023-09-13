@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 const userRoutes = require('./src/routes/userRoute');
 const newLeadRoutes = require('./src/routes/newLeadRoute');
 const companyTypeRoutes = require('./src/routes/companyTypeRoute');
+const positionRoutes = require('./src/routes/addPositionRoute'); 
 
 const rateLimiter = rateLimit({
     windowMs: 15 * 60 * 2000, // 15 minutes
@@ -40,6 +41,9 @@ mongoose.connect('mongodb+srv://ezazrahul794:rK8pmC56PVg4nUv3@cluster0.lrzl9qy.m
         console.error('Error connecting to MongoDB:', err);
     });
 
+
+
+
 // User routes
 app.use('/', userRoutes);
 // Include routes for new leads
@@ -48,6 +52,11 @@ app.use('/', newLeadRoutes);
 app.use('/', userRoutes);
 //Company type add route
 app.use('/', companyTypeRoutes);
+//Company type add route
+app.use('/', positionRoutes);
+
+
+
 
 
 app.get('/', (req, res) => {
