@@ -14,4 +14,7 @@ router.delete('/users/:id', userController.deleteUserById);
 // Authentication route (POST request)
 router.post('/user/login', userController.login);
 
+// Example route that filters users by name and checks roles
+router.get('/users/:name', userController.userRoleCheck);
+
 module.exports = router;

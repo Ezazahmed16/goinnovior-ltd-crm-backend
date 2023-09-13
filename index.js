@@ -9,6 +9,7 @@ const compression = require('compression'); // Added compression middleware
 const mongoose = require('mongoose');
 const userRoutes = require('./src/routes/userRoute');
 const newLeadRoutes = require('./src/routes/newLeadRoute');
+const companyTypeRoutes = require('./src/routes/companyTypeRoute');
 
 const rateLimiter = rateLimit({
     windowMs: 15 * 60 * 2000, // 15 minutes
@@ -45,6 +46,8 @@ app.use('/', userRoutes);
 app.use('/', newLeadRoutes);
 // auth
 app.use('/', userRoutes);
+//Company type add route
+app.use('/', companyTypeRoutes);
 
 
 app.get('/', (req, res) => {

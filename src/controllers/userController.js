@@ -82,3 +82,26 @@ exports.login = async (req, res) => {
     return res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+// Function to filter users by name and check roles
+exports.userRoleCheck = async (req, res) => {
+  try {
+    const name = req.params.name; // Get the name from request parameters
+    // Find users by name
+    const user = await userModel.findOne({ name: name });
+    if (!user || user.length === 0) {
+      return res.status(404).json({ error: 'No users found with the provided name' });
+    }
+
+    const usersWithRoles = {
+      name: user.name,
+      roles: user.roles
+    }
+
+    res.json(usersWithRoles);
+
+  } catch (error) {
+    console.error('Error filtering users by name:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
