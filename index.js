@@ -12,10 +12,11 @@ const newLeadRoutes = require('./src/routes/newLeadRoute');
 const companyTypeRoutes = require('./src/routes/companyTypeRoute');
 const positionRoutes = require('./src/routes/addPositionRoute'); 
 const departmentRoutes = require('./src/routes/departmentRoutes');
+const companyRoutes = require('./src/routes/addCompanyRoute')
 
 const rateLimiter = rateLimit({
     windowMs: 15 * 60 * 2000, // 15 minutes
-    max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes),
+    max: 1000, // Limit each IP to 100 requests per `window` (here, per 15 minutes),
     message: 'Too many requests from this IP. Please try again later',
 });
 
@@ -43,8 +44,6 @@ mongoose.connect('mongodb+srv://ezazrahul794:rK8pmC56PVg4nUv3@cluster0.lrzl9qy.m
     });
 
 
-
-
 // User routes
 app.use('/', userRoutes);
 // Include routes for new leads
@@ -57,6 +56,8 @@ app.use('/', companyTypeRoutes);
 app.use('/', positionRoutes);
 // Get Post Delete Update Department 
 app.use('/', departmentRoutes);
+// Get Post Delete Update Company Info 
+app.use('/', companyRoutes);
 
 
 

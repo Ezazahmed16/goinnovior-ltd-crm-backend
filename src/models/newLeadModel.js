@@ -24,4 +24,6 @@ const newLeadSchema = new mongoose.Schema({
 
 const NewLead = mongoose.model('NewLead', newLeadSchema);
 
+
+
 module.exports = NewLead;
