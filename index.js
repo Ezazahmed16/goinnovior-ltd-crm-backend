@@ -11,6 +11,7 @@ const userRoutes = require('./src/routes/userRoute');
 const newLeadRoutes = require('./src/routes/newLeadRoute');
 const companyTypeRoutes = require('./src/routes/companyTypeRoute');
 const positionRoutes = require('./src/routes/addPositionRoute'); 
+const departmentRoutes = require('./src/routes/departmentRoutes');
 
 const rateLimiter = rateLimit({
     windowMs: 15 * 60 * 2000, // 15 minutes
@@ -54,6 +55,8 @@ app.use('/', userRoutes);
 app.use('/', companyTypeRoutes);
 //Company type add route
 app.use('/', positionRoutes);
+// Get Post Delete Update Department 
+app.use('/', departmentRoutes);
 
 
 
