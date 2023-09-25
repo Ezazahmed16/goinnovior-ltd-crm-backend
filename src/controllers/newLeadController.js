@@ -72,7 +72,7 @@ exports.deleteLeadById = async (req, res) => {
         }
 
         // Delete the lead
-        await lead.remove();
+        await lead.deleteOne();
 
         res.status(204).json(); // Respond with no content (success)
     } catch (error) {

@@ -14,8 +14,8 @@ const companySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  numbers: {
-    type: [String],
+  number: {
+    type: String,
     required: true,
   },
   whatsappNumber: {
