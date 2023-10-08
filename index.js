@@ -14,6 +14,8 @@ const positionRoutes = require('./src/routes/addPositionRoute');
 const departmentRoutes = require('./src/routes/departmentRoutes');
 const companyRoutes = require('./src/routes/addCompanyRoute')
 const employRoutes = require('./src/routes/employsRoute')
+const invoiceRoutes = require('./src/routes/invoiceRoute');
+
 
 const rateLimiter = rateLimit({
     windowMs: 15 * 60 * 2000, // 15 minutes
@@ -61,6 +63,8 @@ app.use('/', departmentRoutes);
 app.use('/', companyRoutes);
 // Get Post Delete Update Employ Info, Status, Recruitment Process 
 app.use('/', employRoutes);
+// Get Post Delete Update Employ Info, Status, Invoice
+app.use('/', invoiceRoutes);
 
 
 

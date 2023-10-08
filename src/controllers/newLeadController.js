@@ -1,4 +1,4 @@
-// newLeadController.js
+// Import necessary modules and models
 const NewLead = require('../models/newLeadModel');
 
 // Create a new lead
@@ -55,6 +55,52 @@ exports.getAllLeads = async (req, res) => {
         res.status(200).json(leads);
     } catch (error) {
         console.error('Error fetching leads:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+// Get lead by ID
+exports.getLeadById = async (req, res) => {
+    try {
+        const leadId = req.params.id;
+
+        // Fetch the lead by ID from the database
+        const lead = await NewLead.findById(leadId);
+
+        if (!lead) {
+            return res.status(404).json({ message: 'Lead not found' });
+        }
+
+        // Return the lead as JSON
+        res.status(200).json(lead);
+    } catch (error) {
+        console.error('Error fetching lead by ID:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+// Update lead by ID
+exports.updateLeadById = async (req, res) => {
+    try {
+        const leadId = req.params.id;
+        const updateData = req.body;
+
+        // Fetch the lead by ID from the database
+        const lead = await NewLead.findById(leadId);
+
+        if (!lead) {
+            return res.status(404).json({ message: 'Lead not found' });
+        }
+
+        // Update the lead data
+        Object.assign(lead, updateData);
+
+        // Save the updated lead to the database
+        await lead.save();
+
+        res.status(200).json({ message: 'Lead updated successfully' });
+    } catch (error) {
+        console.error('Error updating lead by ID:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };

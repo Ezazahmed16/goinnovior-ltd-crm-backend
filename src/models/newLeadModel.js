@@ -1,4 +1,3 @@
-// newLeadModel.js
 const mongoose = require('mongoose');
 
 const newLeadSchema = new mongoose.Schema({
@@ -20,10 +19,12 @@ const newLeadSchema = new mongoose.Schema({
     companyName: String,
     position: String,
     department: String,
+    leadEntryDate: {
+        type: Date,
+        default: Date.now,
+    },
 });
 
 const NewLead = mongoose.model('NewLead', newLeadSchema);
-
-
 
 module.exports = NewLead;
