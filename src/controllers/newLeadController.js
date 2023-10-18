@@ -1,7 +1,6 @@
 // Import necessary modules and models
 const NewLead = require('../models/newLeadModel');
 
-// Create a new lead
 exports.createLead = async (req, res) => {
     try {
         const {
@@ -11,8 +10,10 @@ exports.createLead = async (req, res) => {
             phoneNumbers,
             whatsappNumber,
             companyName,
+            companyType,
             position,
             department,
+            authData, 
         } = req.body;
 
         // Validate the incoming data (you can use Joi or similar)
@@ -31,8 +32,10 @@ exports.createLead = async (req, res) => {
             phoneNumbers,
             whatsappNumber,
             companyName,
+            companyType,
             position,
             department,
+            authData, 
         });
 
         // Save the new lead to the database

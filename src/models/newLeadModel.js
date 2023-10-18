@@ -12,17 +12,24 @@ const newLeadSchema = new mongoose.Schema({
         required: true,
     },
     phoneNumbers: {
-        type: String,
-        required: true,
+        primary: {
+            type: String,
+            required: true,
+        },
+        additional: String,
     },
     whatsappNumber: String,
     companyName: String,
+    companyType: String,
     position: String,
     department: String,
     leadEntryDate: {
         type: Date,
         default: Date.now,
     },
+    authData: String,
+    status: String,
+    message: String,
 });
 
 const NewLead = mongoose.model('NewLead', newLeadSchema);

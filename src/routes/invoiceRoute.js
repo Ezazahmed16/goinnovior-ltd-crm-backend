@@ -17,4 +17,8 @@ router.put('/api/invoices/:id', invoiceController.updateInvoice);
 // Delete an invoice by ID
 router.delete('/api/invoices/:id', invoiceController.deleteInvoice);
 
+// Update an existing invoice by ID
+// router.put('/api/invoices/:id', invoiceController.updateInvoice);
+
+
 module.exports = router;
