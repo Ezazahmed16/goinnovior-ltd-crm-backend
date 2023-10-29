@@ -27,9 +27,11 @@ const newLeadSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    authData: String,
+    leadAddBy: String,
     status: String,
     message: String,
+    callingDate: Date,
+    callBy: String,
 });
 
 const NewLead = mongoose.model('NewLead', newLeadSchema);

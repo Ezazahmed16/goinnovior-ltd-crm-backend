@@ -13,7 +13,7 @@ exports.createLead = async (req, res) => {
             companyType,
             position,
             department,
-            authData, 
+            leadAddBy, 
         } = req.body;
 
         // Validate the incoming data (you can use Joi or similar)
@@ -35,7 +35,7 @@ exports.createLead = async (req, res) => {
             companyType,
             position,
             department,
-            authData, 
+            leadAddBy, 
         });
 
         // Save the new lead to the database
